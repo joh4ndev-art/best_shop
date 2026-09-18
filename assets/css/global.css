@@ -1,0 +1,418 @@
+/* ==========================================================================
+   1. VARIABLES & RESET GENERAL
+   ========================================================================== */
+:root {
+    --bg-dark: #0a0a0a;
+    --card-bg: #121212;
+    --gold-primary: #d4af37;
+    --gold-light: #f3e5ab;
+    --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
+    --text-muted: #8e8e93;
+    --text-light: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden; /* Evita scroll horizontal indeseado */
+    width: 100%;
+}
+
+/* ==========================================================================
+   2. SECCIONES Y CONTENIDOS
+   ========================================================================== */
+.section-container {
+    padding: 50px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Título con gradiente dorado adaptativo */
+.gold-title {
+    text-align: center;
+    font-size: clamp(1.4rem, 4vw, 2rem); /* Se escala según la pantalla */
+    font-weight: 600;
+    margin: 20px 0 35px 0;
+    background: var(--gold-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+}
+
+.gold-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+    margin: 40px auto;
+    width: 85%;
+}
+
+.content-box {
+    background: var(--card-bg);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    color: #ccc;
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. PANTALLA DE LOGIN (ACCESO PRIVADO)
+   ========================================================================== */
+
+/* --- BOTONES Y CAMPOS GENERALES --- */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gold-primary);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--gold-primary);
+}
+
+.btn-gold {
+    width: 100%;
+    padding: 12px;
+    background: var(--gold-gradient);
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: opacity 0.3s ease;
+}
+
+.btn-gold:hover {
+    opacity: 0.9;
+}
+
+.error-msg {
+    color: #ff5555;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   4 AJUSTES RESPONSIVOS (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 3%;
+    }
+
+    .subtle-nav {
+        gap: 12px;
+    }
+
+    .subtle-nav a {
+        font-size: 0.75rem;
+    }
+
+    .section-container {
+        padding: 30px 4%;
+    }
+
+    .login-card {
+        padding: 25px 18px;
+    }
+}
+
+/* ---5 SELECTORES DESPLEGABLES GENERALES --- */
+.select-gold {
+    width: 100%;
+    padding: 12px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.select-gold:focus {
+    border-color: var(--gold-primary);
+}
+
+/* --- 6 PERSONALIZACIÓN GENERAL DE INPUTS (TEXT, NUMBER, FILE) --- */
+input[type="number"],
+input[type="text"],
+input[type="file"] {
+    background-color: #121212;
+    color: #ffffff;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 6px;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+/* Flechas personalizadas para inputs numéricos */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    cursor: pointer;
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
+    opacity: 0.8;
+}
+
+input[type="number"]::-webkit-inner-spin-button:hover {
+    opacity: 1;
+}
+
+/* Botón personalizado de subir archivo */
+input[type="file"]::file-selector-button {
+    background: #1a1a1a;
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: all 0.2s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #252525;
+    border-color: #d4af37;
+}
+
+/* Contenedor para centrar botones individuales */
+.btn-center-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Corrección para Botón Dorado (VER TODO / VER CATÁLOGO) */
+.btn-gold,
+.btn-center-container .btn-gold,
+a.btn-gold {
+    display: inline-flex !important;
+    align-items: center !important;     /* Centra verticalmente */
+    justify-content: center !important; /* Centra horizontalmente */
+    text-decoration: none !important;  /* Elimina la raya negra (subrayado) */
+    width: auto !important;
+    min-width: 180px;
+    padding: 12px 28px;
+    line-height: 1 !important;          /* Evita desfases en la altura del texto */
+    text-align: center;
+}
+
+/* Corrección para el botón "Añadir al Carrito" */
+.btn-add-cart,
+button.btn-add-cart,
+a.btn-add-cart {
+    display: flex !important;
+    align-items: center !important;     /* Centra verticalmente */
+    justify-content: center !important; /* Centra horizontalmente */
+    text-decoration: none !important;  /* Elimina la raya si es un enlace <a> */
+    line-height: 1 !important;          /* Centrado perfecto de las letras */
+    padding: 10px 15px;
+}
+
+/* ==========================================
+   PATRÓN DE FONDO MOSAICO CON SÍMBOLOS ($)
+   ========================================== */
+body {
+    background-color: #050505;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ctext x='20' y='45' font-family='Arial, sans-serif' font-weight='900' font-size='28' fill='%23ffffff' opacity='0.035'%3E%24%3C/text%3E%3Ctext x='80' y='105' font-family='Arial, sans-serif' font-weight='900' font-size='28' fill='%23ffffff' opacity='0.035'%3E%24%3C/text%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-attachment: fixed; /* Mantiene el patrón fijo mientras se hace scroll */
+}
+
+/* Contenedor que tiene el fondo institucional de BE$T */
+.product-card-img-box, 
+.main-img-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Proporción ideal para prendas */
+    background-image: url('../img/fondo_card_best.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-no-repeat;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* La prenda en PNG sin fondo se monta limpia encima */
+.product-card-img-box img, 
+.main-img-box img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.25)); /* Sombra para darle efecto 3D/volumen */
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover suave al pasar el cursor */
+.product-card-img-box:hover img {
+    transform: scale(1.05);
+}
+
+/* Selector de Tallas */
+.sizes-grid {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.size-btn {
+    padding: 10px 20px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.size-btn:hover:not(.disabled) {
+    background: #d4af37;
+    color: #000;
+}
+
+.size-btn.active {
+    background: #d4af37;
+    color: #000;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* Talla Inexistente o Agotada */
+.size-btn.disabled {
+    border-color: #444;
+    color: #555;
+    background: #222;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.status-box {
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.status-ok { background: rgba(76, 175, 80, 0.15); color: #4caf50; border: 1px solid #4caf50; }
+.status-err { background: rgba(244, 67, 54, 0.15); color: #f44336; border: 1px solid #f44336; }
+
+/* Ocultar flechas del input number en Chrome, Safari, Edge, Opera */
+#cantidad-prod::-webkit-outer-spin-button,
+#cantidad-prod::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ocultar flechas en Firefox */
+#cantidad-prod {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* Animación de flotación para el logo 3D */
+.logo-admin img, .logo-header img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0px 4px 8px rgba(212, 175, 55, 0.3));
+}
+
+.logo-admin img:hover, .logo-header img:hover {
+    transform: translateY(-3px) scale(1.03);
+    filter: drop-shadow(0px 8px 15px rgba(212, 175, 55, 0.6));
+}
+
+/* Contenedor con perspectiva 3D */
+.logo-3d-wrapper {
+    text-align: center;
+    margin: 10px 0 25px 0;
+    perspective: 1000px; /* Profundidad 3D */
+}
+
+/* Logo animado: Giro de eje + efecto de viento flotante */
+.logo-3d-animated {
+    max-width: 180px; /* Tamaño más compacto */
+    width: 60%;
+    height: auto;
+    object-fit: contain;
+    display: inline-block;
+    transform-style: preserve-3d;
+    animation: spinAndWind 7s ease-in-out infinite;
+    filter: drop-shadow(0px 8px 12px rgba(212, 175, 55, 0.4));
+}
+
+@keyframes spinAndWind {
+    0% {
+        transform: rotateY(0deg) translateY(0px) rotateZ(0deg);
+    }
+    25% {
+        /* Brisa de viento: sube y se inclina ligeramente */
+        transform: rotateY(90deg) translateY(-8px) rotateZ(2deg);
+    }
+    50% {
+        /* Giro continuo de frente */
+        transform: rotateY(180deg) translateY(0px) rotateZ(-1deg);
+    }
+    75% {
+        /* Segunda ráfaga de viento */
+        transform: rotateY(270deg) translateY(-6px) rotateZ(1deg);
+    }
+    100% {
+        /* Vuelve a su posición inicial */
+        transform: rotateY(360deg) translateY(0px) rotateZ(0deg);
+    }
+}
